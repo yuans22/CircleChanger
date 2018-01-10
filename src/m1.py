@@ -279,10 +279,10 @@ class CircleChanger(object):
         else:
             self.circle.radius = 1
 
-        self.circle.outline_thickness = random.randrange(3, 15)
+        self.circle.outline_thickness = random.randrange(3, 16)
 
-        random_index = random.randrange(0, len(colors))
-        random_colors = self.color[random_index]
+        random_index = random.randrange(0, len(self.colors))
+        random_colors = self.colors[random_index]
         self.circle.fill_color = random_colors
 
 
@@ -340,7 +340,7 @@ class CircleChanger(object):
             :type times_to_swell_or_shrink:  int
         """
         ################################################################
-        # DONE: 5.
+        # DO: 5.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the  run_test_swell_or_shrink_repeatedly  function
         #   (below).  Third, implement and test this method.
@@ -389,7 +389,7 @@ class CircleChanger(object):
         #   NO CREDIT if you use the distance formula here.
         ################################################################
         point = other_circle_changer.circle.center.halfway_to(self.circle.center)
-        radius = other_circle_changer.circle.center.get_distance_from(self.circle.center)
+        radius = other_circle_changer.circle.center.get_distance_from(self.circle.center) / 2
         return CircleChanger(point.x, point.y, radius, 'red', self.colors + other_circle_changer.colors)
 
     def change_color(self, index_of_color):
@@ -437,7 +437,7 @@ class CircleChanger(object):
         #   (below).  Third, implement and test this method.
         ################################################################
 
-        self.circle.fill_color =self.original_color
+        self.circle.fill_color = self.original_color
 
     def change_to_next_color_in_tuple(self):
         """
@@ -484,7 +484,7 @@ class CircleChanger(object):
         else:
             self.change_color(self.index)
             self.index = self.index + 1
-            if self.index > (len(colors) - 1):
+            if self.index > (len(self.colors) - 1):
                 self.index = 0
 
 
